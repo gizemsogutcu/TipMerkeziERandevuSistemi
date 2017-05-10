@@ -1,0 +1,157 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19.Nis.2017, 21:33:20
+    Author     : pc
+*/
+body {
+    font-family:'Arial', Tahoma; 
+    color:black;
+}
+#genel
+{
+    width:1500px; 
+    margin:0 auto; 
+    padding:10px;
+    background-color:#252229;
+}
+#header {
+    width:1480px;
+    background-color:black;
+    height:100px;
+    padding:10px;
+}
+#banner {
+    padding:20px 0 0 20px;
+    height:80px;
+    width:1460px;
+    background-color:grey; 
+     align-items: flex-end;
+}
+#cikis{
+     margin-right: 15px;
+     margin-top: -60px;
+     height:50px;
+     width:55px;
+     float: right;
+}
+/*#menu {
+height:430px;
+width:550px;
+background-color:brown;
+margin:10px 0;
+padding:10px 0 0 30px;
+}*/
+#orta {
+    width:1480px; 
+    height:500px;
+    margin:0 auto; 
+    padding:10px;
+    background-color:black;
+}
+#ortasol {
+    height:480px;
+    width:500px;
+    background-color:grey;   
+    float:left;
+    padding-left:20px;
+}
+#ortasag {
+    height:480px;
+    width:930px;
+    background-color:grey;   
+    float:left;
+    margin:0 0 0 10px;
+    margin-top: 1px;
+    padding-left:20px;
+}
+#temizle {
+    clear:both;
+}
+#alt {
+    height:50px;
+    width:1500px;
+    background-color:grey;
+    margin:10px 0;
+    text-align:center;
+}
+
+
+.d-menu {
+    height:480px;
+    width:500px;
+    background-color:grey;   
+    float:left;
+    padding-left:20px;
+    background-color:#333;
+
+}
+.d-menu ul {
+    margin:0;
+    padding:0;
+    display:block;
+}
+.d-menu ul li {
+    list-style:none;
+    display:block;
+}
+.d-menu ul li:last-child a {
+    border-bottom:0;
+}
+.d-menu ul li a {
+    text-decoration:none;
+    color:#fff;
+    background-color:#333;
+    padding:20px;
+    display:block;
+    border-bottom:1px solid #282828;
+    transition:all .3s ease-in-out;
+}
+.d-menu ul li a:hover {
+    background-color: #6a4ec3 !important;
+    transition:all .3s ease-in-out;
+}
+.d-menu ul li ul {
+    display:none;
+}
+.d-menu ul li:hover ul {
+    display:block;
+    position:absolute;
+    margin:-67px 0 0 300px;
+}
+.d-menu ul li ul li {
+    list-style:none;
+}
+.d-menu ul li ul li a {
+    padding:10px;
+    font-size:15px;
+    background-color: #282828;
+    border-bottom:1px solid #222;
+    transition:all .3s ease-in-out;
+    width:170px;
+}
+.d-menu ul li ul li:last-child a {
+    border-bottom:0;
+}
+.d-menu ul li ul li a:hover {
+    background-color: #6a4ec3;
+    transition:all .3s ease-in-out;
+}
+.d-menu ul li:hover > a {
+    background-color: #282828;
+    transition:all .3s ease-in-out;
+}
+
+
+.doktorfoto{
+    width: 50px;
+    height:50px;
+    margin-top: 10px;
+    margin-left: 8px;
+    float:left;
+    border-radius: 3px;
+    
+}

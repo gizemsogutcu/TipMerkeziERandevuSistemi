@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/csskodlari/randevufiltre.css" />
+        <link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/csskodlari/randevularim.css" />
+        <title>RANDEVULARIM</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+         </h:head>
+        <h:body style="background-image: url(http://subtlepatterns.com/patterns/ricepaper.png);">
+            <div class="ustPanel">
+                <img class="profilfoto" src="resources/images/profilfoto.jpg"/>
+                <p class="hosgeldinizyazisi">Hoşgeldiniz</p><br></br>
+                <p class="hastaAdiSoyadi">#{anasayfa.name} #{anasayfa.surname}</p>
+                <a class="randevularimbuton" href="randevularim.xhtml"><p class="randevularimyazisi">Randevularım</p></a>
+                <a href="index.xhtml"><img class="cikisbuton" src="resources/images/cikisbuton.jpg"/></a>
+            </div>
+            
+            <div class="filtre" style="overflow-y: scroll">
+                 <p:commandButton value="Yenile" action="#{anasayfa.randevudurumu()}"/>
+                <p class="yazi1" >GÜNCEL RANDEVULAR</p>
+                <h:form>
+                 <h:dataTable value="#{anasayfa.guncelrandevu()}" var="myvar" cellspacing="10" cellpadding="10" styleClass="dtable" rowClasses="odd,even" style="margin-top: 30px;">
+                      GÜNCEL RANDEVULAR
+                     <h:column>
+                         <f:facet name="header">TARİH / SAAT</f:facet>
+                            #{myvar.ar_tarih}  #{myvar.ar_saat}
+                            
+                     </h:column>
+                     <h:column>
+                         <f:facet name="header">BÖLÜM</f:facet>
+                            #{myvar.b_adi}
+                         
+                     </h:column>
+                     <h:column>
+                         <f:facet name="header">DOKTOR</f:facet>
+                            #{myvar.dr_adi} #{myvar.dr_soyadi}
+                         
+                     </h:column>
+                     <h:column>
+                         
+                         <h:commandButton action="#{randevuonay.KaydiSil}" value="İptal Et" style="border-radius: 3px;font-family: sans-serif">
+                             <f:param name="strrandevuno" value="#{anasayfa.stringarno}" />
+                             <f:param name="drtcc" value="#{myvar.dr_tc}" />
+                             <f:param name="ar_saatt" value="#{myvar.ar_saat}" />
+                             <f:param name="ar_tarihh" value="#{myvar.ar_tarih}" />
+                         </h:commandButton>
+                     </h:column>
+                </h:dataTable>
+                <p class="yazi2">GEÇMİŞ RANDEVULAR</p>
+                 <h:dataTable value="#{anasayfa.gecmisrandevu()}" var="myvar" cellspacing="10" cellpadding="10" styleClass="dtable" rowClasses="odd,even" style="margin-top:30px">
+                     <h:column>
+                         <f:facet name="header">TARİH / SAAT</f:facet>
+                            #{myvar.ar_tarih}  #{myvar.ar_saat}
+                            
+                     </h:column>
+                     <h:column>
+                         <f:facet name="header">BÖLÜM</f:facet>
+                            #{myvar.b_adi}
+                         
+                     </h:column>
+                     <h:column>
+                         <f:facet name="header">DOKTOR</f:facet>
+                            #{myvar.dr_adi} #{myvar.dr_soyadi}
+                         
+                     </h:column>
+                </h:dataTable>
+                </h:form>
+                
+            </div>
+        </h:body>
+   
+</html>

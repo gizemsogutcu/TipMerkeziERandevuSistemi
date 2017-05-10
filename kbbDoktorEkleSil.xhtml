@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>KBB DOKTOR</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/csskodlari/soncss_adminpaneli.css" />
+        <link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/csskodlari/drsillink.css" />
+        <link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/csskodlari/kbbDoktorListele.css" />
+    </h:head>
+    <h:body>
+        <div id="genel">
+            <div id="header">
+                <div id="banner">
+                    <h2>ADMİN PANELİ</h2>
+
+                    <a href="admingiris.xhtml"><img src="resources/images/exit.png" id="cikis"/></a>
+                </div>
+            </div>
+
+            <div id="orta">
+                <div  class="d-menu">
+                    <h:form>
+                        <ul>
+                            <li><h:commandLink value="HOŞGELDİN #{admin.kullaniciadi} "/></li>
+                            <li><h:commandLink value="Çocuk Hastalıkları" action=" "/>
+                                <ul>
+                                    <li><h:outputLink value="cocukDoktorGoruntule.xhtml">Görüntüle</h:outputLink></li>
+                                    <li>  <h:outputLink value="cocukDoktorEkleSil.xhtml" > Doktor Ekle/Sil</h:outputLink> </li>
+                                </ul>
+
+                            </li>
+                            <li><h:commandLink value="Kardiyoloji" action=" "/>
+                                <ul>
+                                    <li><h:outputLink value="kardiyolojiDoktorGoruntule.xhtml">Görüntüle</h:outputLink></li>
+                                    <li><h:outputLink value="kardiyolojiDoktorEkleSil.xhtml" > Doktor Ekle/Sil</h:outputLink> </li>
+                                </ul>
+                            </li>
+                            <li><h:commandLink value="Dahiliye" action=" "/>
+                                <ul>
+                                    <li><h:outputLink value="dahiliyeDoktorGoruntule.xhtml">Görüntüle</h:outputLink></li>
+                                    <li><h:outputLink value="dahiliyeDoktorEkleSil.xhtml" > Doktor Ekle/Sil</h:outputLink> </li>
+                                </ul>
+                            </li>
+                            <li><h:commandLink value="Kulak Burun Boğaz" action=" "/>
+                                <ul>
+                                    <li><h:outputLink value="kbbDoktorGoruntule.xhtml">Görüntüle</h:outputLink></li>
+                                    <li><h:outputLink value="kbbDoktorEkleSil.xhtml" > Doktor Ekle/Sil</h:outputLink> </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </h:form>
+
+                </div>
+                <div id="ortasag" style="overflow-y: scroll">
+                    <h:form>
+                        <p:commandButton value="Doktor Ekle" action="kbbDoktorEkle.xhtml" style="width: 125px;margin: 35px;height: 55px"></p:commandButton>
+                        <h:dataTable value="#{dr.kbbDoktor()}" var="myvar">
+                            <table>
+
+                                <tr>
+                                    <td>
+                                        <h:column>
+                                            <img class="doktorfoto" src="resources/images/doktorfoto.jpg" style=" width: 75px"/>  
+                                        </h:column>
+                                    </td>
+                                    <td>
+                                        <h:column>
+                                            <h:outputLink class="doktorismi" value="kbbDoktorEkleSil.xhtml">#{myvar.dr_adi} #{myvar.dr_soyadi} </h:outputLink>        
+                                        </h:column>
+                                    </td>
+                                    <td>
+                                        <h:column>
+                                            <p:growl id="message" showDetail="true" />
+
+
+                                            <h:commandLink id="drsillink" action="#{dialogView.KayitSil}"  value="Sil" style="color : #333; font-size:22px; background-color: #b1b1f3;width: 40px; text-decoration:none; " >
+                                                <f:param name="dr_tc" value="#{myvar.dr_tc}"/>
+                                            </h:commandLink>
+
+
+
+                                        </h:column>
+                                    </td>
+                                </tr>
+                            </table>
+                        </h:dataTable>
+
+                    </h:form>
+                </div>
+            </div>
+
+            <div id="alt">Her Hakki Saklidir.</div>
+        </div>
+    </h:body>
+</html>
+

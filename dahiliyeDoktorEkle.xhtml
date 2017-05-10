@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>DAHİLİYE DOKTOR EKLE SAYFASI</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/csskodlari/soncss_adminpaneli.css" /> 
+         
+        
+        
+    </h:head>
+    <h:body>
+        <div id="genel">
+            <div id="header">
+                <div id="banner">
+                    <h2>ADMİN PANELİ</h2>
+                
+                <a href="admingiris.xhtml"><img src="resources/images/exit.png" id="cikis"/></a>
+                </div>
+            </div>
+
+            <div id="orta">
+                <div  class="d-menu">
+                    <h:form>
+                    <ul>
+                        <li><h:commandLink value="HOŞGELDİN #{admin.kullaniciadi} "/></li>
+                        <li><h:commandLink value="Çocuk Hastalıkları" action=" "/>
+                            <ul>
+                                <li><h:outputLink value="cocukDoktorGoruntule.xhtml">Görüntüle</h:outputLink></li>
+                                    
+                                <li><h:outputLink value="cocukDoktorEkleSil.xhtml"> Doktor Ekle/Sil</h:outputLink></li>
+                            </ul>
+                            
+                        </li>
+                        <li><h:commandLink value="Kardiyoloji" action=" "/>
+                            <ul>
+                                <li><h:outputLink value="kardiyolojiDoktorGoruntule.xhtml">Görüntüle</h:outputLink></li>
+                                <li><h:outputLink value="kardiyolojiDoktorEkleSil.xhtml"> Doktor Ekle/Sil</h:outputLink></li>
+                            </ul>
+                        </li>
+                        <li><h:commandLink value="Dahiliye" action=" "/>
+                            <ul>
+                                <li><h:outputLink value="dahiliyeDoktorGoruntule.xhtml">Görüntüle</h:outputLink></li>
+                                <li><h:outputLink value="dahiliyeDoktorEkleSil.xhtml"> Doktor Ekle/Sil</h:outputLink></li>
+                            </ul>
+                        </li>
+                        <li><h:commandLink value="Kulak Burun Boğaz" action=" "/>
+                            <ul>
+                                <li><h:outputLink value="kbbDoktorGoruntule.xhtml">Görüntüle</h:outputLink></li>
+                                <li><h:outputLink value="kbbDoktorEkleSil.xhtml"> Doktor Ekle/Sil</h:outputLink></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    </h:form>
+                </div>
+                        <div id="ortasag" style=" height: 480px; margin-top:1px">
+                            <h:form>
+                                    <div  >
+           <h:panelGrid    columns="6" width="400px"  border="0" cellspacing="20" style="margin-left: 50px">
+                <p:outputLabel  for="tc" value="TC" />
+                <p:inputMask id="tc" value="#{dr.TC}"  required="true" requiredMessage="Lütfen TC alanını doldurunuz." mask="99999999999" />
+                <h:message for="tc"/>
+                
+                <p:outputLabel  for="isbaslangictarihi" value="İşe Başlangıç Tarihi"  />
+                <p:inputMask id="isbaslangictarihi" value="#{dr.isbaslangictarihi}" mask="99/99/9999" required="true" requiredMessage="Lütfen İşe Başlangıç Tarihi alanını doldurunuz."/>
+                <h:message for="isbaslangic"/>
+                
+                
+                <p:outputLabel value ="Ad*" />
+                <p:inputText id="Adinputtext" value="#{dr.adi}" required="true" requiredMessage="Lütfen Ad alanını doldurunuz."/>
+                <h:message for="Adinputtext"/>
+                
+                
+               <p:outputLabel  for="mezuniyettarihi" value="Mezuniyet Tarihi"  />
+                <p:inputMask id="mezuniyettarihi" value="#{dr.mezuniyettarihi}" mask="99/99/9999" required="true" requiredMessage="Lütfen Mezuniyet Tarihi alanını doldurunuz."/>
+                <h:message for="mezuniyettarihi"/>
+                
+                <p:outputLabel value ="Soyad*"/>
+                <p:inputText id="Soyadinputtext" value="#{dr.soyadi}" required="true" requiredMessage="Lütfen Soyad alanını doldurunuz."/>
+                <h:message for="Soyadinputtext"/>
+
+                <p:outputLabel  for="dogumtarihi" value="Doğum Tarihi"  />
+                <p:inputMask id="dogumtarihi" value="#{dr.dogumtarihi}" mask="99/99/9999" required="true" requiredMessage="Lütfen Doğum Tarihi alanını doldurunuz."/>
+                <h:message for="dogumtarihi"/>
+                
+                
+                
+                <p:outputLabel for="phone" value="Telefon" />
+                <p:inputMask id="phone" value="#{dr.telefon}" mask="(9999) 999-9999" required="true" requiredMessage="Lütfen Telefon alanını doldurunuz." />
+                <h:message for="phone"/>
+                
+                
+                <p:outputLabel  value ="Üniversite*"/>
+                <p:inputText  id="Universiteinputtext" value="#{dr.universite}" required="true" requiredMessage="Lütfen Üniversite alanını doldurunuz."/>
+                <h:message for="Universiteinputtext"/>
+                
+
+                <p:outputLabel value ="Unvan*"/>
+                <p:inputText id="Unvaninputtext" value="#{dr.unvan}" required="true" requiredMessage="Lütfen Unvan alanını doldurunuz."/>
+                <h:message for="Unvaninputtext"/>
+                
+                
+                
+                <p:outputLabel value ="Uzmanlık Alanı*"/>
+                <p:inputText id="Uzmanlikalaniinputtext" value="#{dr.uzmanlikalani}" required="true" requiredMessage="Lütfen Uzmanlık Alanı alanını doldurunuz."/>
+                <h:message for="Boluminputtext"/>
+                
+                
+                
+                <p:outputLabel value ="Muayene Ücreti*"/>
+                <p:inputText id="Muayeneucretiinputtext" value="#{dr.muayeneucreti}" required="true" requiredMessage="Lütfen Muayene ücreti alanını doldurunuz."/>
+                <h:message for="Muayeneucretiinputtext"/>
+                
+                
+                
+            </h:panelGrid>
+        </div>
+         
+            
+
+        
+            <p:growl id="growl" life="2000" />
+            <p:commandButton value="Kaydet" id="ajax" update="growl" action="#{dr.dahiliyeDoktorEkle}" styleClass="ui-priority-primary" style="float: right; margin-right: 300px;"/>
+       
+            
+                            </h:form>
+                        </div>
+            </div>
+
+            <div id="alt">Her Hakkı Saklıdır.</div>
+        </div>
+    </h:body>
+</html>

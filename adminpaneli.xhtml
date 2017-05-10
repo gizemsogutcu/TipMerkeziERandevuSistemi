@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>ADMİN PANELİ</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/csskodlari/soncss_adminpaneli.css" /> 
+    </h:head>
+    <h:body>
+        <div id="genel">
+            <div id="header">
+                <div id="banner">
+                    <h2>ADMİN PANELİ</h2>
+                
+                <a href="admingiris.xhtml"><img src="resources/images/exit.png" id="cikis"/></a>
+                </div>
+            </div>
+
+            <div id="orta">
+                <div  class="d-menu">
+                     <h:form>
+                    <ul>
+                        <li><h:commandLink value="HOŞGELDİN #{admin.kullaniciadi} "/></li>
+                        <li><h:commandLink value="Çocuk Hastalıkları" action=" "/>
+                            <ul>
+                                <li><h:commandLink value="Görüntüle" action="cocukDoktorGoruntule.xhtml"/></li>
+                                    
+                                <li>  <h:commandLink value="Doktor Ekle/Sil" action="cocukDoktorEkleSil"/> </li>
+                            </ul>
+                            
+                        </li>
+                        <li><h:commandLink value="Kardiyoloji" action=" "/>
+                            <ul>
+                                <li><h:commandLink value="Görüntüle" action="kardiyolojiDoktorGoruntule.xhtml"/></li>
+                                <li><h:commandLink value="Doktor Ekle/Sil" action="kardiyolojiDoktorEkleSil"/></li>
+                            </ul>
+                        </li>
+                        <li><h:commandLink value="Dahiliye" action=" "/>
+                            <ul>
+                                <li><h:commandLink value="Görüntüle" action="dahiliyeDoktorGoruntule.xhtml"/></li>
+                                <li><h:commandLink value="Doktor Ekle/Sil" action="dahiliyeDoktorEkleSil"/></li>
+                            </ul>
+                        </li>
+                        <li><h:commandLink value="Kulak Burun Boğaz" action=" "/>
+                            <ul>
+                                <li><h:commandLink value="Görüntüle" action="kbbDoktorGoruntule.xhtml"/></li>
+                                <li><h:commandLink value="Doktor Ekle/Sil" action="kbbDoktorEkleSil"/></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    </h:form>
+
+                </div>
+                        <div id="ortasag">
+                            <h:form>
+                    
+                    </h:form></div>
+            </div>
+
+            <div id="alt">Her Hakkı Saklıdır.</div>
+        </div>
+    </h:body>
+</html>

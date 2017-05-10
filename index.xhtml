@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <title>İSTANBUL TIP MERKEZİ E-RANDEVU SİSTEMİ</title>
+        <link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/csskodlari/index.css" />
+     
+    </h:head>
+    <h:body style="background-image: url(http://www.gumuskayainsaat.com.tr/img/bg/630905.jpg);" >
+        <h:form >
+
+            <div >
+                       
+                        <img src="resources/images/yenilogo.jpg" width="150px" height="120px"/>
+                        
+                        <div class="isim" >   
+                            İSTANBUL TIP MERKEZİ E-RANDEVU SİSTEMİ
+                        </div>
+            </div>
+            
+            
+            
+            
+            
+            <div class="girdi" >
+            <h:panelGrid columns="3" width="320px"  border="0" cellspacing="20" >
+                <p:outputLabel  for="tc" value="TC" />
+                <p:inputMask id="tc" value="#{anasayfa.identification}"  required="true" requiredMessage="Lütfen TC alanını doldurunuz." mask="99999999999" />
+                <h:message for="tc"/>
+                
+                
+                <p:outputLabel value ="Ad*" />
+                <p:inputText id="Adinputtext" value="#{anasayfa.name}" required="true" requiredMessage="Lütfen Ad alanını doldurunuz." validatorMessage="Adınızda rakam ve semboller kullanmayınız.">
+                    
+                </p:inputText>
+                <h:message for="Adinputtext"/>
+                
+                
+                
+                <p:outputLabel value ="Soyad*"/>
+                <p:inputText id="Soyadinputtext" value="#{anasayfa.surname}" required="true" requiredMessage="Lütfen Soyad alanını doldurunuz."/>
+                <h:message for="Soyadinputtext"/>
+                
+                
+                
+                <p:outputLabel value ="Mail*"/>
+                <p:inputText id="Mailinputtext" value="#{anasayfa.mail}" required="true" requiredMessage="Lütfen Mail alanını doldurunuz."
+                             validatorMessage="Yanlış mail formatı girdiniz" >
+                <f:validateRegex
+		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                </p:inputText>
+                <h:message for="Mailinputtext"/>
+
+                
+                <p:outputLabel  for="dogumtarihi" value="Doğum Tarihi"  />
+                <p:inputMask id="dogumtarihi" value="#{anasayfa.birthdate}" mask="99/99/9999" required="true" requiredMessage="Lütfen Doğum Tarihi alanını doldurunuz."/>
+                <h:message for="dogumtarihi"/>
+                
+                
+                
+                <p:outputLabel for="phone" value="Telefon" />
+                <p:inputMask id="phone" value="#{anasayfa.phone}" mask="(9999) 999-9999" required="true" requiredMessage="Lütfen Telefon alanını doldurunuz." />
+                <h:message for="phone"/>
+                
+                
+                
+                
+                <p:outputLabel for="cinsiyet" value="Cinsiyet" />
+                <p:selectOneRadio id="cinsiyet" value="#{anasayfa.gender}" required="true" requiredMessage="Lütfen Cinsiyet alanını doldurunuz.">
+                    <f:selectItem itemLabel="Kadın" itemValue="Kadın" />
+                    <f:selectItem itemLabel="Erkek" itemValue="Erkek" />
+                </p:selectOneRadio>
+                <h:message for="cinsiyet"/>
+
+            </h:panelGrid>
+        </div>
+         
+  
+
+        <div class="buton">
+            <p:growl id="growl" life="2000" />
+            <p:commandButton value="Giriş Yap" id="ajax" update="growl" action="#{anasayfa.veritabaninaGönder}" styleClass="ui-priority-primary" />
+        </div>
+            
+        </h:form>
+   
+
+    </h:body>
+</html>

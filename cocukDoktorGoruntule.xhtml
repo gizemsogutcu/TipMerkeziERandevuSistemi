@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>ÇOCUK DOKTOR</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/csskodlari/soncss_adminpaneli.css" /> 
+        <link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/csskodlari/DoktorGoruntule.css" />
+    </h:head>
+    <h:body>
+        <div id="genel">
+            <div id="header">
+                <div id="banner">
+                    <h2>ADMİN PANELİ</h2>
+
+                    <a href="admingiris.xhtml"><img src="resources/images/exit.png" id="cikis"/></a>
+                </div>
+            </div>
+
+            <div id="orta">
+                <div  class="d-menu" style="margin-left: -10px">
+                    <h:form >
+                    <ul>
+                        <li><h:commandLink value="HOŞGELDİN #{admin.kullaniciadi} "/></li>
+                        <li><h:commandLink value="Çocuk Hastalıkları" action=" "/>
+                            <ul>
+                                <li><h:commandLink value="Görüntüle" action="cocukDoktorGoruntule.xhtml"/></li>
+                                    
+                                <li>  <h:commandLink value="Doktor Ekle/Sil" action="cocukDoktorEkleSil"/> </li>
+                            </ul>
+                            
+                        </li>
+                        <li><h:commandLink value="Kardiyoloji" action=" "/>
+                            <ul>
+                                <li><h:commandLink value="Görüntüle" action="kardiyolojiDoktorGoruntule.xhtml"/></li>
+                                <li><h:commandLink value="Doktor Ekle/Sil" action="kardiyolojiDoktorEkleSil"/></li>
+                            </ul>
+                        </li>
+                        <li><h:commandLink value="Dahiliye" action=" "/>
+                            <ul>
+                                <li><h:commandLink value="Görüntüle" action="dahiliyeDoktorGoruntule.xhtml"/></li>
+                                <li><h:commandLink value="Doktor Ekle/Sil" action="dahiliyeDoktorEkleSil"/></li>
+                            </ul>
+                        </li>
+                        <li><h:commandLink value="Kulak Burun Boğaz" action=" "/>
+                            <ul>
+                                <li><h:commandLink value="Görüntüle" action="kbbDoktorGoruntule.xhtml"/></li>
+                                <li><h:commandLink value="Doktor Ekle/Sil" action="kbbDoktorEkleSil"/></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    </h:form>
+
+                </div>
+                <div id="ortasag" style="width: 940px;overflow-y: scroll">
+                    <h:form style="margin-left:-24px" >
+                        <h:dataTable  value="#{doktor.cocukDoktor()}" var="myvar" cellspacing="10" cellpadding="10" styleClass="dtable" rowClasses="odd,even" style="margin-top:30px" >
+                            <table style="border: 2px solid red">
+                                <tr>
+                                    <td>
+                                        <h:column>
+                                            <img class="doktorfoto" src="resources/images/doktorfoto.jpg" style=" width: 50px"/>  
+                                           
+                                        </h:column>
+                                    </td>
+                                    <td>
+                                        <h:column>
+                                            <f:facet name="header">TC</f:facet>
+                                            <h:outputText   value="#{myvar.dr_tc}">
+                                              
+                                                </h:outputText>   
+                                        </h:column>
+                                    </td>
+                                    <td>
+                                        <h:column>
+                                            <f:facet name="header">ADI</f:facet>
+
+                                            <h:outputText   value="#{myvar.dr_adi}">
+                                               
+                                            </h:outputText>  
+
+                                        </h:column>
+                                    </td>
+                                    <td>.
+                                        <h:column>
+                                            <f:facet name="header">SOYADI</f:facet>
+
+                                            <h:outputText   value="#{myvar.dr_soyadi}">
+                                                
+                                            </h:outputText> 
+
+                                        </h:column>
+                                    </td>
+                                    <td>
+                                        <h:column>
+                                            <f:facet name="header">DOĞUM TARİHİ</f:facet>
+
+                                            <h:outputText  value="#{myvar.dr_dogumtarihi}">
+                                               
+                                            </h:outputText> 
+
+                                        </h:column>
+                                    </td>
+                                    <td>
+                                        <h:column>
+                                            <f:facet name="header">TELEFON</f:facet>
+
+                                            <h:outputText   value="#{myvar.dr_telefon}">
+                                               
+                                            </h:outputText> 
+
+                                        </h:column>
+                                    </td>
+                                    <td>
+                                        <h:column>
+                                            <f:facet name="header">ÜNİVERSİTE</f:facet>
+
+                                            <h:outputText   value="#{myvar.dr_universite}">
+                                                
+                                            </h:outputText> 
+
+                                        </h:column>
+                                    </td>
+                                    <td>
+                                        <h:column>
+                                            <f:facet name="header">İŞ BAŞLANGIÇ TARİHİ</f:facet>
+                                            <h:outputText  value="#{myvar.dr_isbaslangictarihi}">
+                                                
+                                            </h:outputText> 
+                                        </h:column>
+                                    </td>
+                                    <td>
+                                        <h:column>
+                                            <f:facet name="header">UNVAN</f:facet>
+                                            <h:outputText   value="#{myvar.dr_unvan}">
+                                              
+                                            </h:outputText>        
+                                        </h:column>
+                                    </td>
+                                    <td>
+                                        <h:column>
+                                            <f:facet name="header">MUAYENE ÜCRETİ</f:facet>
+                                            <h:outputText   value="#{myvar.dr_muayeneucreti}">
+                                                
+                                            </h:outputText> 
+                                        </h:column>
+                                    </td>
+                                    <td>
+                                        <h:column>
+                                            <f:facet name="header">UZMANLIK ALANI</f:facet>
+                                            <h:outputText   value="#{myvar.dr_uzmanlikalani}">
+                                                
+                                            </h:outputText>         
+                                        </h:column>
+                                    </td>
+                                </tr>
+                            </table>
+                        </h:dataTable> 
+                    </h:form>
+                </div>
+            </div>
+
+            <div id="alt">Her Hakkı Saklıdır.</div>
+        </div>
+    </h:body>
+</html>

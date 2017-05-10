@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/csskodlari/randevufiltre.css" />
+        <title>RANDEVU FİLTRE</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script type="text/javascript">
+        PrimeFaces.locales['tr'] = {
+            closeText: 'kapat',
+            prevText: 'geri',
+            nextText: 'ileri',
+            currentText: 'bugün',
+            monthNames: ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'],
+            monthNamesShort: ['Oca','Şub','Mar','Nis','May','Haz', 'Tem','Ağu','Eyl','Eki','Kas','Ara'],
+            dayNames: ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'],
+            dayNamesShort: ['Pz','Pt','Sa','Ça','Pe','Cu','Ct'],
+            dayNamesMin: ['Pz','Pt','Sa','Ça','Pe','Cu','Ct'],
+            weekHeader: 'Hf',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: '',
+            timeOnlyTitle: 'Zaman Seçiniz',
+            timeText: 'Zaman',
+            hourText: 'Saat',
+            minuteText: 'Dakika',
+            secondText: 'Saniye',
+            ampm: false,
+            month: 'Ay',
+            week: 'Hafta',
+            day: 'Gün',
+            allDayText : 'Tüm Gün'
+        };
+    </script>
+    </h:head>
+    <h:body style="background-image: url(http://subtlepatterns.com/patterns/ricepaper.png);">
+        <div class="ustPanel">
+            <img class="profilfoto" src="resources/images/profilfoto.jpg"/>
+            <p class="hosgeldinizyazisi">Hoşgeldiniz</p><br></br>
+            <p class="hastaAdiSoyadi">#{anasayfa.name} #{anasayfa.surname}</p>
+            <a class="randevularimbuton" href="randevularim.xhtml"><p class="randevularimyazisi">Randevularım</p></a>
+            <a href="index.xhtml"><img class="cikisbuton" src="resources/images/cikisbuton.jpg"/></a>
+        </div>
+        <div class="filtre">
+            <h:form style="padding-top: 100px; padding-left: 70px">
+                <h:panelGrid columns="1">
+                    <p class="yazilar">Tarih Seçiniz</p>        
+                    
+    	   <p:calendar locale="tr" value="#{rfiltre.secilenTarih}"/>
+
+                    <p class="yazilar">Bölüm Seçiniz</p> 
+                        
+                            <p:selectOneMenu id="bolumSelectOneMenu" value="#{rfiltre.secilenBolum}">
+				<f:selectItem itemLabel="Bölüm Seçiniz" itemValue="" noSelectionOption="true" />	
+                    <f:selectItems value="#{rfiltre.bolumler}"/>
+                    <p:ajax update="doktorSelectOneMenu" listener="#{rfiltre.fillDoktorList()}"/>
+                    
+                </p:selectOneMenu>
+                    
+                    <p class="yazilar">Doktor Seçiniz</p>
+                <p:selectOneMenu style="width: 221px;" id="doktorSelectOneMenu" value="#{rfiltre.secilenDoktor}">
+                     <f:selectItem itemLabel="Doktor Seçiniz" itemValue="" noSelectionOption="true" />
+                    <f:selectItems value="#{rfiltre.doktorlar}"/>
+                   
+                </p:selectOneMenu>
+               
+               <h:commandButton class="randevuara" value="Randevu Ara" type="submit" action="#{rfiltre.gonder}">
+               
+               </h:commandButton>
+                </h:panelGrid>
+            
+                
+                
+            </h:form>
+            
+        </div>
+        
+    </h:body>
+</html>

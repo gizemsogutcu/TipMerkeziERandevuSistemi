@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/csskodlari/randevufiltre.css" />
+        <link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/csskodlari/randevusec.css" />
+        <title>RANDEVU ONAY</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <style type="text/css">
+            .sinif{
+                background-color: red;
+            }
+            .sinif1{
+                background-color: yellow;
+            }
+        </style>
+    </h:head>
+    <h:body style="background-image: url(http://subtlepatterns.com/patterns/ricepaper.png);">
+        <div class="ustPanel">
+            <img class="profilfoto" src="resources/images/profilfoto.jpg"/>
+            <p class="hosgeldinizyazisi">Hoşgeldiniz</p>
+            <a class="randevularimbuton" href="randevularim.xhtml"><p class="randevularimyazisi">Randevularım</p></a>
+            <a href="index.xhtml"><img class="cikisbuton" src="resources/images/cikisbuton.jpg"/></a>
+        </div>
+        <div class="filtre">
+            <h:form style="padding-top: 100px; padding-left: 275px;   font-size: large">
+                <table class="rndonaytable" cellpadding="10px;">
+                    <tr>
+                        <th colspan="2">RANDEVU BİLGİLERİ</th>
+                    </tr>
+                    <tr>
+                        <td><b>TC</b></td>
+                        <td>#{anasayfa.identification}</td>
+                    </tr>
+                     <tr>
+                         <td><b>AD</b></td>
+                        <td>#{anasayfa.name}</td>
+                    </tr>
+                     <tr>
+                         <td><b>SOYAD</b></td>
+                        <td>#{anasayfa.surname}</td>
+                    </tr>
+                    <tr>
+                        <td><b>TARİH/SAAT</b></td>
+                        <td>#{rfiltre.rndformTarih} / #{randevuonay.randevusaatAyarla()}</td>
+                    </tr>
+                    <tr>
+                        <td><b>BÖLÜM</b></td>
+                        <td>#{rfiltre.secilenBolum}</td>
+                    </tr>
+                    <tr>
+                        <td><b>DOKTOR</b></td>
+                        <td>#{rfiltre.secilenDoktor}</td>
+                    </tr>
+                </table>
+                
+                    <p:commandButton style=" right:-30px;margin-top: 10px;" action="randevusec" value="İPTAL"/>
+                    <p:commandButton style=" left:150px;margin-top: 10px;"   action="#{randevuonay.GONDER}" value="ONAYLA"  >
+                <f:param name="hastatc" value="#{anasayfa.identification}" />
+                <f:param name="bolumno" value="#{rfiltre.secilenbno}" />
+                <f:param name="doktortc" value="#{rfiltre.secilendrtc}" />
+                <f:param name="randevutarih" value="#{rfiltre.formTarih}" />
+                <f:param name="randevusaat" value="#{randevuonay.randevusaat}" />
+                <f:param name="randevudurum" value="#{randevuonay.randevudurum}" />
+                
+            </p:commandButton>
+                
+            </h:form>
+        </div>
+
+
+    </h:body>
+</html>
+

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/csskodlari/randevufiltre.css" />
+        <link rel="stylesheet" type="text/css" href="${request.contextPath}/resources/csskodlari/randevusec.css" />
+        <title>RANDEVU SEÇ</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script type="text/javascript">
+        PrimeFaces.locales['tr'] = {
+            closeText: 'kapat',
+            prevText: 'geri',
+            nextText: 'ileri',
+            currentText: 'bugün',
+            monthNames: ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'],
+            monthNamesShort: ['Oca','Şub','Mar','Nis','May','Haz', 'Tem','Ağu','Eyl','Eki','Kas','Ara'],
+            dayNames: ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'],
+            dayNamesShort: ['Pz','Pt','Sa','Ça','Pe','Cu','Ct'],
+            dayNamesMin: ['Pz','Pt','Sa','Ça','Pe','Cu','Ct'],
+            weekHeader: 'Hf',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: '',
+            timeOnlyTitle: 'Zaman Seçiniz',
+            timeText: 'Zaman',
+            hourText: 'Saat',
+            minuteText: 'Dakika',
+            secondText: 'Saniye',
+            ampm: false,
+            month: 'Ay',
+            week: 'Hafta',
+            day: 'Gün',
+            allDayText : 'Tüm Gün'
+        };
+    </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="resources/js/bosdolurandevu.js"></script>
+    </h:head>
+    <h:body style="background-image: url(http://subtlepatterns.com/patterns/ricepaper.png);">
+        <div class="ustPanel">
+            <img class="profilfoto" src="resources/images/profilfoto.jpg"/>
+            <p class="hosgeldinizyazisi">Hoşgeldiniz</p><br></br>
+            <p class="hastaAdiSoyadi">#{anasayfa.name} #{anasayfa.surname}</p>
+            <a class="randevularimbuton" href="randevularim.xhtml"><p class="randevularimyazisi">Randevularım</p></a>
+            <a href="index.xhtml"><img class="cikisbuton" src="resources/images/cikisbuton.jpg"/></a>
+        </div>
+        <div class="filtre">
+            <h:form style="padding-top: 100px; padding-left: 70px">
+                <h:panelGrid columns="1">
+                    <p class="yazilar">Tarih Seçiniz</p>        
+                    
+    	   <p:calendar locale="tr" value="#{rfiltre.secilenTarih}"/>
+
+                    <p class="yazilar">Bölüm Seçiniz</p> 
+                        
+                            <p:selectOneMenu id="bolumSelectOneMenu" value="#{rfiltre.secilenBolum}">
+					<f:selectItem  itemLabel="Bölüm Seçin" itemValue="#{null}" />
+                    <f:selectItems value="#{rfiltre.bolumler}"/>
+                    <p:ajax update="doktorSelectOneMenu" listener="#{rfiltre.fillDoktorList()}"/>
+                </p:selectOneMenu>
+                    
+                    <p class="yazilar">Doktor Seçiniz</p>
+                <p:selectOneMenu style="width: 221px;" id="doktorSelectOneMenu" value="#{rfiltre.secilenDoktor}">
+                    <f:selectItems value="#{rfiltre.doktorlar}"/>
+                </p:selectOneMenu>
+               
+               <h:commandButton class="randevuara" value="Randevu Ara" type="submit" action="#{rfiltre.gonder}">
+               
+               </h:commandButton>
+                </h:panelGrid>
+            
+                
+            </h:form>
+            <div class="sonuclar">
+                <h:form>
+                <img class="doktorfoto" src="resources/images/doktorfoto.jpg"/>
+                <p class="doktorismi">#{rfiltre.secilenDoktor}</p>
+                
+                <table cellspacing="10" id="tb">
+                    <tr>
+                        <td id="birincitd" class="saatGorunum">
+                            
+                            <h:dataTable value="#{rfiltre.saatler()}" var="myvar" rows="1" first="0">
+                                <h:column><h:commandLink class="saatlink" action="randevuonay.xhtml" value="#{myvar.cs_saat} ">
+                                        <f:param name="randevusaat" value="#{myvar.cs_saat}"/></h:commandLink>
+                                <div id="birinci" style="visibility: hidden;width: 1px;height: 1px;">#{myvar.durum}</div>
+                                </h:column>
+                            </h:dataTable>
+                        </td>
+                        <td id="ikincitd" class="saatGorunum">
+                            <h:dataTable value="#{rfiltre.saatler()}" var="myvar" rows="1" first="1">
+                                <h:column><h:commandLink class="saatlink" action="randevuonay.xhtml" value="#{myvar.cs_saat} ">
+                                        <f:param name="randevusaat" value="#{myvar.cs_saat}"/></h:commandLink>
+                                <div id="ikinci" style="visibility: hidden;width: 1px;height: 1px;">#{myvar.durum}</div>
+                                </h:column>
+                            </h:dataTable>
+                        </td>
+                        <td id="ucuncutd" class="saatGorunum">
+                            <h:dataTable value="#{rfiltre.saatler()}" var="myvar" rows="1" first="2">
+                                <h:column><h:commandLink class="saatlink" action="randevuonay.xhtml" value="#{myvar.cs_saat} ">
+                                        <f:param name="randevusaat" value="#{myvar.cs_saat}"/></h:commandLink>
+                                <div id="ucuncu" style="visibility: hidden;width: 1px;height: 1px;">#{myvar.durum}</div>
+                                </h:column>
+                            </h:dataTable>
+                        </td>
+                        <td id="dorduncutd" class="saatGorunum">
+                            <h:dataTable value="#{rfiltre.saatler()}" var="myvar" rows="1" first="3">
+                                <h:column><h:commandLink class="saatlink" action="randevuonay.xhtml" value="#{myvar.cs_saat} ">
+                                        <f:param name="randevusaat" value="#{myvar.cs_saat}"/></h:commandLink>
+                                <div id="dorduncu" style="visibility: hidden;width: 1px;height: 1px;">#{myvar.durum}</div>
+                                </h:column>
+                            </h:dataTable>
+                        </td>
+                    </tr>
+                </table>
+                
+                <table cellspacing="10" id="tb">
+                    <tr>
+                        <td id="besincitd" class="saatGorunum">
+                            <h:dataTable value="#{rfiltre.saatler()}" var="myvar" rows="1" first="4">
+                                <h:column><h:commandLink class="saatlink" action="randevuonay.xhtml" value="#{myvar.cs_saat} ">
+                                        <f:param name="randevusaat" value="#{myvar.cs_saat}"/></h:commandLink>
+                                <div id="besinci" style="visibility: hidden;width: 1px;height: 1px;">#{myvar.durum}</div>
+                                </h:column>
+                            </h:dataTable>
+                        </td>
+                        <td id="altincitd" class="saatGorunum">
+                            <h:dataTable value="#{rfiltre.saatler()}" var="myvar" rows="1" first="5">
+                                <h:column><h:commandLink class="saatlink" action="randevuonay.xhtml" value="#{myvar.cs_saat} ">
+                                        <f:param name="randevusaat" value="#{myvar.cs_saat}"/></h:commandLink>
+                                <div id="altinci" style="visibility: hidden;width: 1px;height: 1px;">#{myvar.durum}</div>
+                                </h:column>
+                            </h:dataTable>
+                        </td>
+                        <td id="yedincitd" class="saatGorunum">
+                            <h:dataTable value="#{rfiltre.saatler()}" var="myvar" rows="1" first="6">
+                                <h:column><h:commandLink class="saatlink" action="randevuonay.xhtml" value="#{myvar.cs_saat} ">
+                                        <f:param name="randevusaat" value="#{myvar.cs_saat}"/></h:commandLink>
+                                <div id="yedinci" style="visibility: hidden;width: 1px;height: 1px;">#{myvar.durum}</div>
+                                </h:column>
+                            </h:dataTable>
+                        </td>
+                        <td id="sekizincitd" class="saatGorunum">
+                            <h:dataTable value="#{rfiltre.saatler()}" var="myvar" rows="1" first="7">
+                                <h:column><h:commandLink class="saatlink" action="randevuonay.xhtml" value="#{myvar.cs_saat} ">
+                                        <f:param name="randevusaat" value="#{myvar.cs_saat}"/></h:commandLink>
+                                <div id="sekizinci" style="visibility: hidden;width: 1px;height: 1px;">#{myvar.durum}</div>
+                                </h:column>
+                            </h:dataTable>
+                        </td>
+                    </tr>
+                </table>
+                
+                <table cellspacing="10" id="tb">
+                    <tr>
+                        <td id="dokuzuncutd" class="saatGorunum">
+                            <h:dataTable value="#{rfiltre.saatler()}" var="myvar" rows="1" first="8">
+                                <h:column><h:commandLink class="saatlink" action="randevuonay.xhtml" value="#{myvar.cs_saat} ">
+                                        <f:param name="randevusaat" value="#{myvar.cs_saat}"/></h:commandLink>
+                                <div id="dokuzuncu" style="visibility: hidden;width: 1px;height: 1px;">#{myvar.durum}</div>
+                                </h:column>
+                            </h:dataTable>
+                        </td>
+                        <td id="onuncutd" class="saatGorunum">
+                            <h:dataTable value="#{rfiltre.saatler()}" var="myvar" rows="1" first="9">
+                                <h:column><h:commandLink class="saatlink" action="randevuonay.xhtml" value="#{myvar.cs_saat} ">
+                                        <f:param name="randevusaat" value="#{myvar.cs_saat}"/></h:commandLink>
+                                <div id="onuncu" style="visibility: hidden;width: 1px;height: 1px;">#{myvar.durum}</div>
+                                </h:column>
+                            </h:dataTable>
+                        </td>
+                        <td id="onbirincitd" class="saatGorunum">
+                            <h:dataTable value="#{rfiltre.saatler()}" var="myvar" rows="1" first="10">
+                                <h:column><h:commandLink class="saatlink" action="randevuonay.xhtml" value="#{myvar.cs_saat} ">
+                                        <f:param name="randevusaat" value="#{myvar.cs_saat}"/></h:commandLink>
+                                <div id="onbirinci" style="visibility: hidden;width: 1px;height: 1px;">#{myvar.durum}</div>
+                                </h:column>
+                            </h:dataTable>
+                        </td>
+                        <td id="onikincitd" class="saatGorunum">
+                            <h:dataTable value="#{rfiltre.saatler()}" var="myvar" rows="1" first="11">
+                                <h:column><h:commandLink class="saatlink" action="randevuonay.xhtml" value="#{myvar.cs_saat} ">
+                                        <f:param name="randevusaat" value="#{myvar.cs_saat}"/></h:commandLink>
+                                <div id="onikinci" style="visibility: hidden;width: 1px;height: 1px;">#{myvar.durum}</div>
+                                </h:column>
+                            </h:dataTable>
+                        </td>
+                    </tr>
+                </table>
+                
+                <table cellspacing="10" id="tb">
+                    <tr>
+                        <td id="onucuncutd" class="saatGorunum">
+                            <h:dataTable value="#{rfiltre.saatler()}" var="myvar" rows="1" first="12">
+                                <h:column><h:commandLink class="saatlink" action="randevuonay.xhtml" value="#{myvar.cs_saat} ">
+                                        <f:param name="randevusaat" value="#{myvar.cs_saat}"/></h:commandLink>
+                                <div id="onucuncu" style="visibility: hidden;width: 1px;height: 1px;">#{myvar.durum}</div>
+                                </h:column>
+                            </h:dataTable>
+                        </td>
+                        <td id="ondorduncutd" class="saatGorunum">
+                            <h:dataTable value="#{rfiltre.saatler()}" var="myvar" rows="1" first="13">
+                                <h:column><h:commandLink class="saatlink" action="randevuonay.xhtml" value="#{myvar.cs_saat} ">
+                                        <f:param name="randevusaat" value="#{myvar.cs_saat}"/></h:commandLink>
+                                <div id="ondorduncu" style="visibility: hidden;width: 1px;height: 1px;">#{myvar.durum}</div>
+                                </h:column>
+                            </h:dataTable>
+                        </td>
+                    </tr>
+                </table>
+           
+              
+                </h:form>
+            </div>
+        </div>
+        
+
+    </h:body>
+</html>
